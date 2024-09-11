@@ -82,7 +82,7 @@ function App() {
       </Flex>
       <Container className="bg">
       </Container>
-      <div style={{ width: "100%", display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+      <Flex wrap="wrap" justify="center">
         {
           countries.sort((a, b) => a.name.localeCompare(b.name)).map(country =>
             <Country
@@ -95,7 +95,7 @@ function App() {
             />
           )
         }
-      </div>
+      </Flex>
     </Theme>
   )
 }
