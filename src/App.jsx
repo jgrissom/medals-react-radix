@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import NewCountry from './components/NewCountry';
 import Country from './components/Country';
+import { Theme } from '@radix-ui/themes';
+import '@radix-ui/themes/styles.css';
 import './App.css'
 
 function App() {
@@ -58,7 +60,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <Theme appearance="dark">
       <h1>Olympic Medals ({getAllMedalsTotal()}) <NewCountry onAdd={handleAdd} /></h1>
       <div style={{ width: "100%", display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
         {
@@ -74,7 +76,7 @@ function App() {
           )
         }
       </div>
-    </>
+    </Theme>
   )
 }
 
