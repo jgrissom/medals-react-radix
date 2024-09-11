@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import NewCountry from './components/NewCountry';
 import Country from './components/Country';
-import { Theme, Button } from '@radix-ui/themes';
+import { Theme, Button, Flex, Heading, Badge } from '@radix-ui/themes';
 import { SunIcon, MoonIcon } from '@radix-ui/react-icons';
 import '@radix-ui/themes/styles.css';
 import './App.css'
@@ -71,7 +71,15 @@ function App() {
           (appearance === "dark") ? <MoonIcon /> : <SunIcon />
         }
       </Button>
-      <h1>Olympic Medals ({getAllMedalsTotal()}) <NewCountry onAdd={handleAdd} /></h1>
+      <Flex p="2" pl="8" className="fixedHeader" justify="between">
+        <Heading size="6">
+          Olympic Medals
+          <Badge variant="outline" ml="2">
+            <Heading size="6">{getAllMedalsTotal()}</Heading>
+          </Badge>
+        </Heading>
+        <NewCountry onAdd={handleAdd} />
+      </Flex>
       <div style={{ width: "100%", display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
         {
           countries.sort((a, b) => a.name.localeCompare(b.name)).map(country =>

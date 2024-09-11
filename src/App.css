@@ -1,1 +1,7 @@
-
+.fixedHeader {
+  border-bottom: solid rgba(120, 120, 120, .5) .5px;
+  position: sticky;
+  top: 0;
+  background-color: inherit;
+  z-index: 10;
+}
