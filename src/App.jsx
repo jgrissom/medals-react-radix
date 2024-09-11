@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
 import NewCountry from './components/NewCountry';
 import Country from './components/Country';
-import { Theme } from '@radix-ui/themes';
+import { Theme, Button } from '@radix-ui/themes';
+import { SunIcon, MoonIcon } from '@radix-ui/react-icons';
 import '@radix-ui/themes/styles.css';
 import './App.css'
 
 function App() {
+  const [appearance, setAppearance] = useState("dark");
   const [countries, setCountries] = useState([]);
   const medals = useRef([
     { id: 1, name: 'gold', color: '#FFD700', rank: 1 },
@@ -37,6 +39,9 @@ function App() {
     medals.current.forEach(medal => { sum += countries.reduce((a, b) => a + b[medal.name], 0); });
     return sum;
   }
+  function toggleAppearance() {
+    setAppearance(appearance === "light" ? "dark" : "light");
+  }
 
   // this is the functional equivalent to componentDidMount
   useEffect(() => {
@@ -60,7 +65,12 @@ function App() {
   }, []);
 
   return (
-    <Theme appearance="dark">
+    <Theme appearance={appearance}>
+      <Button onClick={toggleAppearance} style={{ position: "fixed", bottom: 20, right: 20, zIndex: 100 }} variant="ghost">
+        {
+          (appearance === "dark") ? <MoonIcon /> : <SunIcon />
+        }
+      </Button>
       <h1>Olympic Medals ({getAllMedalsTotal()}) <NewCountry onAdd={handleAdd} /></h1>
       <div style={{ width: "100%", display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
         {
