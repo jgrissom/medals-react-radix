@@ -24,20 +24,17 @@ function App() {
   ]);
   const apiEndpoint = "https://medalsapi.azurewebsites.net/api/country";
 
-  function handleAdd(name) {
-    // const id =
-    //   countries.length === 0
-    //     ? 1
-    //     : Math.max(...countries.map((country) => country.id)) + 1;
-    // setCountries(
-    //   [...countries].concat({
-    //     id: id,
-    //     name: name,
-    //     gold: 0,
-    //     silver: 0,
-    //     bronze: 0,
-    //   })
-    // );
+  async function handleAdd(name) {
+    try {
+      const { data: post } = await axios.post(apiEndpoint, { name: name });
+      setCountries(countries.concat(post));
+    } catch (ex) {
+      if (ex.response) {
+        console.log(ex.response);
+      } else {
+        console.log("Request failed");
+      }
+    }
   }
   function handleDelete(countryId) {
     // setCountries([...countries].filter((c) => c.id !== countryId));
