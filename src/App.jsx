@@ -172,6 +172,19 @@ function App() {
     setConnection(newConnection);
   }, []);
 
+  // componentDidUpdate (changes to connection)
+  useEffect(() => {
+    if (connection) {
+      connection
+        .start()
+        .then(() => {
+          console.log("Connected!");
+        })
+        .catch((e) => console.log("Connection failed: ", e));
+    }
+    // useEffect is dependent on changes connection
+  }, [connection]);
+
   return (
     <Theme appearance={appearance}>
       <Button
