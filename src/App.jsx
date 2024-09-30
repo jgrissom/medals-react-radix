@@ -195,6 +195,9 @@ function App() {
 
           connection.on("ReceiveDeleteMessage", (id) => {
             console.log(`Delete id: ${id}`);
+            let mutableCountries = [...latestCountries.current];
+            mutableCountries = mutableCountries.filter((c) => c.id !== id);
+            setCountries(mutableCountries);
           });
         })
         .catch((e) => console.log("Connection failed: ", e));
