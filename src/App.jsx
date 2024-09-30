@@ -28,7 +28,8 @@ function App() {
   // latestCountries is a ref variable to countries (state)
   // this is needed to access state variable in useEffect w/o dependency
   latestCountries.current = countries;
-  const apiEndpoint = "https://medalsapi.azurewebsites.net/api/country";
+  // const apiEndpoint = "https://medalsapi.azurewebsites.net/api/country";
+  const apiEndpoint = "https://medalsapi.azurewebsites.net/jwtapi/country";
   const hubEndpoint = "https://medalsapi.azurewebsites.net/medalsHub";
 
   async function handleAdd(name) {
