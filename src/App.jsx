@@ -142,6 +142,9 @@ function App() {
     });
     setCountries(mutableCountries);
   }
+  function handleLogin(username, password) {
+    console.log(`username: ${username}, password: ${password}`);
+  }
   function getAllMedalsTotal() {
     let sum = 0;
     // use medal count displayed in the web page for medal count totals
@@ -257,7 +260,7 @@ function App() {
       >
         {appearance === "dark" ? <MoonIcon /> : <SunIcon />}
       </Button>
-      <Login />
+      <Login onLogin={handleLogin} />
       <Flex p="2" pl="8" className="fixedHeader" justify="between">
         <Heading size="6">
           Olympic Medals
