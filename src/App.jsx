@@ -45,7 +45,17 @@ function App() {
 
   async function handleAdd(name) {
     try {
-      await axios.post(apiEndpoint, { name: name });
+      await axios.post(
+        apiEndpoint,
+        {
+          name: name,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
     } catch (ex) {
       if (
         ex.response &&
