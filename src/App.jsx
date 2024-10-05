@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 import { HubConnectionBuilder } from "@microsoft/signalr";
 import NewCountry from "./components/NewCountry";
 import Country from "./components/Country";
@@ -151,8 +152,10 @@ function App() {
         username: username,
         password: password,
       });
-      const encodedJwt = resp.data.token;
-      console.log(encodedJwt);
+      const encoded = resp.data.token;
+      console.log(encoded);
+      const decoded = jwtDecode(encoded);
+      console.log(decoded);
       setAuthenticated(true);
     } catch (ex) {
       if (
