@@ -4,6 +4,7 @@ import { HubConnectionBuilder } from "@microsoft/signalr";
 import NewCountry from "./components/NewCountry";
 import Country from "./components/Country";
 import Login from "./components/Login";
+import Logout from "./components/Logout";
 import {
   Theme,
   Button,
@@ -20,6 +21,7 @@ function App() {
   const [appearance, setAppearance] = useState("dark");
   const [countries, setCountries] = useState([]);
   const [connection, setConnection] = useState(null);
+  const [authenticated, setAuthenticated] = useState(false);
   const medals = useRef([
     { id: 1, name: "gold", color: "#FFD700", rank: 1 },
     { id: 2, name: "silver", color: "#C0C0C0", rank: 2 },
@@ -151,6 +153,7 @@ function App() {
       });
       const encodedJwt = resp.data.token;
       console.log(encodedJwt);
+      setAuthenticated(true);
     } catch (ex) {
       if (
         ex.response &&
@@ -279,7 +282,7 @@ function App() {
       >
         {appearance === "dark" ? <MoonIcon /> : <SunIcon />}
       </Button>
-      <Login onLogin={handleLogin} />
+      {authenticated ? <Logout /> : <Login onLogin={handleLogin} />}
       <Flex p="2" pl="8" className="fixedHeader" justify="between">
         <Heading size="6">
           Olympic Medals
