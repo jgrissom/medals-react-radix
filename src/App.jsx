@@ -3,6 +3,7 @@ import axios from "axios";
 import { HubConnectionBuilder } from "@microsoft/signalr";
 import NewCountry from "./components/NewCountry";
 import Country from "./components/Country";
+import Login from "./components/Login";
 import {
   Theme,
   Button,
@@ -256,6 +257,7 @@ function App() {
       >
         {appearance === "dark" ? <MoonIcon /> : <SunIcon />}
       </Button>
+      <Login />
       <Flex p="2" pl="8" className="fixedHeader" justify="between">
         <Heading size="6">
           Olympic Medals
