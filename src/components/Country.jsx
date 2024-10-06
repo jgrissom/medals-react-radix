@@ -87,6 +87,7 @@ function Country(props) {
                 key={medal.id}
                 medal={medal}
                 country={props.country}
+                canPatch={props.canPatch}
                 onIncrement={props.onIncrement}
                 onDecrement={props.onDecrement}
               />
